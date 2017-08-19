@@ -17,7 +17,7 @@ exports.raidcounters = functions.https.onRequest((request, response) => {
 
     let actionMap = new Map();
     [
-        new ChooseBoss()
+        new ChooseBoss(request.body)
     ].forEach(i => i.register(actionMap));
 
     app.handleRequest(actionMap);

@@ -2,8 +2,10 @@
 
 class SimpleIntent {
 
-    constructor(intentId) {
+    constructor(intentId, req) {
         this.intentId = intentId;
+        this.lang = req.lang ? req.lang : "en";
+        this.req = req;
     }
 
     /**

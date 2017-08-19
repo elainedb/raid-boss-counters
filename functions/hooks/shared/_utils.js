@@ -1,4 +1,11 @@
 'use strict';
+
+// FIREBASE STUFF
+const functions = require('firebase-functions');
+const firebase = require('firebase-admin');
+firebase.initializeApp(functions.config().firebase);
+exports.froot = firebase.database().ref();
+
 exports.DEFAULT_LIFESPAN = 5;
 
 exports.reinitArrayIfEmpty = function (reference, actual) {

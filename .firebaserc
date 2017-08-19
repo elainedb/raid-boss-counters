@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "raid-counters"
+    "default": "raid-counters",
+    "raid-counters": "raid-counters"
   }
 }

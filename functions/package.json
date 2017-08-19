@@ -1,6 +1,6 @@
 {
-  "name": "nany",
-  "description": "Nany is here to play with children",
+  "name": "raid counters",
+  "description": "Raid counters",
   "version": "0.0.1",
   "private": true,
   "license": "Apache Version 2.0",
@@ -12,7 +12,8 @@
     "lint": "semistandard --fix \"**/*.js\"",
     "start": "firebase serve --only functions",
     "deploy": "sh deploy.sh",
-    "push": "git pull origin master; git push origin master;"
+    "push": "git pull origin master; git commit -am 'new updates'; git push origin master;",
+    "push-jade": "git pull origin jade; git commit -am 'new updates'; git push origin jade;"
   },
   "dependencies": {
     "actions-on-google": "^1.0.0",
