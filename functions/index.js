@@ -1,12 +1,12 @@
 'use strict';
 
-process.env.DEBUG = 'actions-on-google:error';
+process.env.DEBUG = 'actions-on-google:*';
 const App = require('actions-on-google').ApiAiApp;
 const functions = require('firebase-functions');
 
 require('./hooks/shared/object.ext');
 
-// const Welcome = require('./hooks/welcome');
+const Welcome = require('./hooks/welcome');
 const ChooseBoss = require('./hooks/chooseBoss');
 
 exports.raidcounters = functions.https.onRequest((request, response) => {
@@ -17,6 +17,7 @@ exports.raidcounters = functions.https.onRequest((request, response) => {
 
     let actionMap = new Map();
     [
+        new Welcome(request.body),
         new ChooseBoss(request.body)
     ].forEach(i => i.register(actionMap));
 

@@ -10,7 +10,8 @@
   },
   "scripts": {
     "lint": "semistandard --fix \"**/*.js\"",
-    "start": "firebase serve --only functions",
+    "start-local-jade": "firebase serve -p 5004 --only functions,hosting",
+    "ngrok-local-jade": "/Application/ngrok http 5006",
     "deploy": "sh deploy.sh",
     "push": "git pull origin master; git commit -am 'new updates'; git push origin master;",
     "push-jade": "git pull origin jade; git commit -am 'new updates'; git push origin jade;"

@@ -2,37 +2,39 @@
 
 const SimpleIntent = require('./shared/simpleIntent');
 const utils = require('./shared/_utils');
-const chooseGameData = require('./chooseGame/chooseGameData');
 
-const INTENT_ID = 'intent.input.welcome';
+const INTENT_ID = 'input.welcome';
 
-const CONTEXT_CHOOSE_GAME = "context_choose_game";
-const DEFAULT_LIFESPAN = 5;
-
+// TODO localize
 const WELCOME_SENTENCES = [
-    "Hi little one! I am your cool auntie.",
-    "Hello there, glad to hear you.",
-    "Hi! I hope you are doing great.",
+    "Hi trainer! Please state a raid pokemon name and we will help you find the best counters.",
+    "Hello trainer friend. Say a pokemon name you want to battle in a raid, I'll find the best counters for you!"
+];
+
+// TODO localize
+const POKE_SUGGESTION = [
+    "Tyranitar",
+    "Muk",
+    "Vaporeon"
 ];
 
 class Welcome extends SimpleIntent {
 
-    constructor() {
-        super(INTENT_ID);
+    constructor(req) {
+        super(INTENT_ID, req);
     }
 
     trigger(app) {
-        let welcomeResponse = utils.randomFromArray(WELCOME_SENTENCES);
-        let chooseGameResponse = utils.randomFromArray(chooseGameData.CHOOSE_GAME_SENTENCES);
 
-        app.setContext(CONTEXT_CHOOSE_GAME, DEFAULT_LIFESPAN, {});
+        let welcomeResponse = utils.randomFromArray(WELCOME_SENTENCES);
+
         if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
             let richResponse = app.buildRichResponse()
-                .addSimpleResponse(`<speak>${welcomeResponse} ${chooseGameResponse}</speak>`)
-                .addSuggestions(chooseGameData.GAME_SUGGESTIONS);
+                .addSimpleResponse(`<speak>${welcomeResponse}</speak>`)
+                .addSuggestions(POKE_SUGGESTION);
             app.ask(richResponse);
         } else {
-            app.ask(`<speak>${welcomeResponse} ${chooseGameResponse}</speak>`, chooseGameData.NO_INPUT_SUGGESTIONS);
+            app.ask(`<speak>${welcomeResponse} </speak>`);
         }
     }
 }

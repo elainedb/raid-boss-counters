@@ -10,7 +10,7 @@ exports.DEFAULT_LIFESPAN = 5;
 
 exports.reinitArrayIfEmpty = function (reference, actual) {
     return actual && actual.length > 1 && [... actual] || [... reference];
-}
+};
 
 /**
  * Pick a random element from an array. Additional argument allow to exclude elements to be picked up from array
